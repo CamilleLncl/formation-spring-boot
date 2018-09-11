@@ -1,9 +1,11 @@
 package fr.epf.demoseptembre.controllers;
 
+import fr.epf.demoseptembre.models.User;
 import fr.epf.demoseptembre.persistence.UserDao;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 
 /**
  * TODO class details.
@@ -14,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class UsersController {
 
   private final UserDao userDao;
+
   
   public UsersController(UserDao userDao) {
     this.userDao = userDao;
@@ -28,10 +31,21 @@ public class UsersController {
    * @param model le modèle
    * @return
    */
-  @GetMapping("/users")
+  @GetMapping("/userslist")
   public  String getUsers (Model model) {
     model.addAttribute("data", userDao.findAll());
     return "users-list";
   }
+
+  @GetMapping("/addusers")
+    public String userForm (Model model){
+      model.addAttribute("user", new User());
+      return "add_member";
+  }
+@PostMapping("/addusers")
+    public String addUser (Model model, User user){
+      userDao.save(user);
+      return "redirect:/userslist";
+}
   
 }

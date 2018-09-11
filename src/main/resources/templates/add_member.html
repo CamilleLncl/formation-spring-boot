@@ -14,10 +14,12 @@
 
     <!-- Custom CSS -->
     <link href="../css/style.css" rel="stylesheet">
+    <link href="../css/map.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
           type="text/css">
+
 </head>
 
 <body>
@@ -38,15 +40,15 @@
                     <div class="panel-body">
                         <div class="row">
                             <div class="col-xs-12">
-                                <form action="#" th:action="@{/user}" th:object="${user}" method="post">
+                                <form action="#" th:action="@{/addusers}" th:object="${user}" method="post">
                                     <div class="form-group">
                                         <label for="firstname">Prénom</label>
                                         <input type="text" class="input-lg form-control" id="firstname"
                                                th:field="*{firstName}" placeholder="Prénom">
                                     </div>
                                     <div class="form-group">
-                                        <label for="surname">Nom</label>
-                                        <input type="text" id="surname" class="input-lg form-control"
+                                        <label for="lastname">Nom</label>
+                                        <input type="text" id="lastname" class="input-lg form-control"
                                                th:field="*{lastName}" placeholder="Nom">
                                     </div>
                                     <div class="text-right">
@@ -68,6 +70,14 @@
     <!-- /#page-wrapper -->
 
 </div>
+<div>
+<script src="https://www.amcharts.com/lib/3/ammap.js"></script>
+<script src="https://www.amcharts.com/lib/3/maps/js/worldLow.js"></script>
+<script src="https://www.amcharts.com/lib/3/themes/light.js"></script>
+<h1>Click countries to select</h1>
+<div id="chartdiv"></div>
+<div id="info">Seletced countries: <span id="selected">-</span></div>
+</div>
 <!-- /#wrapper -->
 <footer class="footer">
     <div class="container">
@@ -80,6 +90,7 @@
 <!-- jQuery -->
 <script src="../js/jquery-3.1.1.min.js"></script>
 
+<script type="text/javascript" src="../js/map.js"></script>
 <!-- Bootstrap Core JavaScript -->
 <script src="../js/bootstrap.min.js"></script>
 
